@@ -214,4 +214,10 @@
       <path d="M0,30 C240,55 400,5 600,30 C800,55 960,5 1200,30 L1200,0 L0,0 Z" fill="currentColor" transform="translate(1200,0)"/>
     </g>
   </g>
+
+  <!-- watermark -->
+  <text x="1180" y="28" text-anchor="end"
+        font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="15" font-weight="600" letter-spacing="1"
+        fill="#FFFFFF" opacity="0.4">Arconw</text>
 </svg>

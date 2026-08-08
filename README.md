@@ -85,3 +85,5 @@ One-line description of what it does and the problem it solves.
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](#)
 [![Upwork](https://img.shields.io/badge/Upwork-6FDA44?style=flat-square&logo=upwork&logoColor=white)](#)
 -->
+
+<img src="./assets/wave-footer.svg" width="100%"/>
