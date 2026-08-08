@@ -1,78 +1,82 @@
 <svg width="1200" height="220" viewBox="0 0 1200 220" xmlns="http://www.w3.org/2000/svg">
   <style>
-    .ink { color: rgba(0,0,0,0.3); }
-    .dot { color: rgba(0,0,0,1); }
-    .label { color: rgba(0,0,0,1); }
+    .wave { color: rgba(139,92,246,0.45); }          /* brighter pastel purple/violet */
+    .line-stroke { color: rgba(16,185,129,0.55); }   /* pastel emerald, translucent */
+    .line-mark { color: rgba(5,150,105,1); }         /* pastel emerald, solid */
+    .bar { color: rgba(217,119,6,1); }               /* pastel amber, solid base */
     @media (prefers-color-scheme: dark) {
-      .ink { color: rgba(255,255,255,0.3); }
-      .dot { color: rgba(255,255,255,1); }
-      .label { color: rgba(255,255,255,1); }
+      .wave { color: rgba(167,139,250,0.5); }
+      .line-stroke { color: rgba(52,211,153,0.55); }
+      .line-mark { color: rgba(110,231,183,1); }
+      .bar { color: rgba(252,211,77,1); }
     }
     .tip { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 11px; text-anchor: middle; }
   </style>
 
   <!-- chart silhouettes sit behind the wave -->
-  <g class="ink">
+  <g>
 
-    <!-- line chart, left edge to mid-image, with points that pulse and label themselves in turn -->
-    <polyline points="20,150 90,120 160,155 230,122 300,140 370,115 440,150 510,125 580,145"
+    <!-- line chart, left edge past mid-image; tooltips only sit on convex (peak) points -->
+    <polyline class="line-stroke" points="20,150 90,120 160,155 230,122 300,140 370,128 440,150 510,125 580,145 650,118"
               fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
 
-    <circle class="dot" cx="20" cy="150" r="2.5" fill="currentColor"/>
-    <circle class="dot" cx="160" cy="155" r="2.5" fill="currentColor"/>
-    <circle class="dot" cx="370" cy="115" r="2.5" fill="currentColor"/>
-    <circle class="dot" cx="510" cy="125" r="2.5" fill="currentColor"/>
+    <!-- plain valley/endpoint dots, no tooltip -->
+    <circle class="line-mark" cx="20" cy="150" r="2.5" fill="currentColor"/>
+    <circle class="line-mark" cx="160" cy="155" r="2.5" fill="currentColor"/>
+    <circle class="line-mark" cx="300" cy="140" r="2.5" fill="currentColor"/>
+    <circle class="line-mark" cx="440" cy="150" r="2.5" fill="currentColor"/>
+    <circle class="line-mark" cx="580" cy="145" r="2.5" fill="currentColor"/>
 
     <!-- Quality: peak -> label above. active 0-3s of 15s loop -->
-    <circle class="dot" cx="90" cy="120" fill="currentColor">
+    <circle class="line-mark" cx="90" cy="120" fill="currentColor">
       <animate attributeName="r" dur="15s" begin="0s" repeatCount="indefinite"
                keyTimes="0;0.067;0.133;0.2;1" values="2.5;6;6;2.5;2.5"/>
     </circle>
-    <text class="tip label" x="90" y="104" fill="currentColor">
+    <text class="tip line-mark" x="90" y="104" fill="currentColor">
       <animate attributeName="opacity" dur="15s" begin="0s" repeatCount="indefinite"
                keyTimes="0;0.067;0.133;0.2;1" values="0;1;1;0;0"/>
       Quality
     </text>
 
-    <!-- Performance: peak -> label above, point nudged down to clear the wave. active 3-6s -->
-    <circle class="dot" cx="230" cy="122" fill="currentColor">
+    <!-- Performance: peak -> label above. active 3-6s -->
+    <circle class="line-mark" cx="230" cy="122" fill="currentColor">
       <animate attributeName="r" dur="15s" begin="0s" repeatCount="indefinite"
                keyTimes="0;0.2;0.267;0.333;0.4;1" values="2.5;2.5;6;6;2.5;2.5"/>
     </circle>
-    <text class="tip label" x="230" y="106" fill="currentColor">
+    <text class="tip line-mark" x="230" y="106" fill="currentColor">
       <animate attributeName="opacity" dur="15s" begin="0s" repeatCount="indefinite"
                keyTimes="0;0.2;0.267;0.333;0.4;1" values="0;0;1;1;0;0"/>
       Performance
     </text>
 
-    <!-- User-Friendly: valley -> label below, offset accounts for text height. active 6-9s -->
-    <circle class="dot" cx="300" cy="140" fill="currentColor">
+    <!-- User-Friendly: peak -> label above. active 6-9s -->
+    <circle class="line-mark" cx="370" cy="128" fill="currentColor">
       <animate attributeName="r" dur="15s" begin="0s" repeatCount="indefinite"
                keyTimes="0;0.4;0.467;0.533;0.6;1" values="2.5;2.5;6;6;2.5;2.5"/>
     </circle>
-    <text class="tip label" x="300" y="166" fill="currentColor">
+    <text class="tip line-mark" x="370" y="112" fill="currentColor">
       <animate attributeName="opacity" dur="15s" begin="0s" repeatCount="indefinite"
                keyTimes="0;0.4;0.467;0.533;0.6;1" values="0;0;1;1;0;0"/>
       User-Friendly
     </text>
 
-    <!-- Scalable: valley -> label below. active 9-12s -->
-    <circle class="dot" cx="440" cy="150" fill="currentColor">
+    <!-- Scalable: peak -> label above. active 9-12s -->
+    <circle class="line-mark" cx="510" cy="125" fill="currentColor">
       <animate attributeName="r" dur="15s" begin="0s" repeatCount="indefinite"
                keyTimes="0;0.6;0.667;0.733;0.8;1" values="2.5;2.5;6;6;2.5;2.5"/>
     </circle>
-    <text class="tip label" x="440" y="176" fill="currentColor">
+    <text class="tip line-mark" x="510" y="109" fill="currentColor">
       <animate attributeName="opacity" dur="15s" begin="0s" repeatCount="indefinite"
                keyTimes="0;0.6;0.667;0.733;0.8;1" values="0;0;1;1;0;0"/>
       Scalable
     </text>
 
-    <!-- Reliable: valley (rising into endpoint) -> label below. active 12-15s -->
-    <circle class="dot" cx="580" cy="145" fill="currentColor">
+    <!-- Reliable: new rising node, peak-like endpoint -> label above. active 12-15s -->
+    <circle class="line-mark" cx="650" cy="118" fill="currentColor">
       <animate attributeName="r" dur="15s" begin="0s" repeatCount="indefinite"
                keyTimes="0;0.8;0.867;0.933;1" values="2.5;2.5;6;6;2.5"/>
     </circle>
-    <text class="tip label" x="580" y="171" fill="currentColor">
+    <text class="tip line-mark" x="650" y="102" fill="currentColor">
       <animate attributeName="opacity" dur="15s" begin="0s" repeatCount="indefinite"
                keyTimes="0;0.8;0.867;0.933;1" values="0;0;1;1;0"/>
       Reliable
@@ -80,7 +84,7 @@
 
     <!-- bar chart, right side, 10 bars growing/shrinking smoothly and out of sync;
          each bar's own opacity rises with its height, so taller = more solid, shorter = more see-through -->
-    <rect class="dot" x="850" y="142" width="12" height="36" rx="2" fill="currentColor">
+    <rect class="bar" x="850" y="142" width="12" height="36" rx="2" fill="currentColor">
       <animate attributeName="height" dur="8.4s" begin="0s" repeatCount="indefinite"
                calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="36;64;42;60;36"
                keySplines="0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1"/>
@@ -91,7 +95,7 @@
                calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="0.25;0.85;0.38;0.76;0.25"
                keySplines="0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1"/>
     </rect>
-    <rect class="dot" x="874" y="128" width="12" height="50" rx="2" fill="currentColor">
+    <rect class="bar" x="874" y="128" width="12" height="50" rx="2" fill="currentColor">
       <animate attributeName="height" dur="9.6s" begin="0.5s" repeatCount="indefinite"
                calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="50;28;58;38;50"
                keySplines="0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1"/>
@@ -102,7 +106,7 @@
                calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="0.69;0.25;0.85;0.45;0.69"
                keySplines="0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1"/>
     </rect>
-    <rect class="dot" x="898" y="116" width="12" height="62" rx="2" fill="currentColor">
+    <rect class="bar" x="898" y="116" width="12" height="62" rx="2" fill="currentColor">
       <animate attributeName="height" dur="7.5s" begin="1.0s" repeatCount="indefinite"
                calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="62;40;54;34;62"
                keySplines="0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1"/>
@@ -113,7 +117,7 @@
                calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="0.85;0.38;0.68;0.25;0.85"
                keySplines="0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1"/>
     </rect>
-    <rect class="dot" x="922" y="134" width="12" height="44" rx="2" fill="currentColor">
+    <rect class="bar" x="922" y="134" width="12" height="44" rx="2" fill="currentColor">
       <animate attributeName="height" dur="10.2s" begin="1.5s" repeatCount="indefinite"
                calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="44;60;32;56;44"
                keySplines="0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1"/>
@@ -124,7 +128,7 @@
                calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="0.51;0.85;0.25;0.76;0.51"
                keySplines="0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1"/>
     </rect>
-    <rect class="dot" x="946" y="122" width="12" height="56" rx="2" fill="currentColor">
+    <rect class="bar" x="946" y="122" width="12" height="56" rx="2" fill="currentColor">
       <animate attributeName="height" dur="8.9s" begin="2.0s" repeatCount="indefinite"
                calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="56;36;64;42;56"
                keySplines="0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1"/>
@@ -135,7 +139,7 @@
                calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="0.68;0.25;0.85;0.38;0.68"
                keySplines="0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1"/>
     </rect>
-    <rect class="dot" x="970" y="140" width="12" height="38" rx="2" fill="currentColor">
+    <rect class="bar" x="970" y="140" width="12" height="38" rx="2" fill="currentColor">
       <animate attributeName="height" dur="7.8s" begin="2.5s" repeatCount="indefinite"
                calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="38;66;44;62;38"
                keySplines="0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1"/>
@@ -146,7 +150,7 @@
                calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="0.25;0.85;0.38;0.76;0.25"
                keySplines="0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1"/>
     </rect>
-    <rect class="dot" x="994" y="126" width="12" height="52" rx="2" fill="currentColor">
+    <rect class="bar" x="994" y="126" width="12" height="52" rx="2" fill="currentColor">
       <animate attributeName="height" dur="10.8s" begin="3.0s" repeatCount="indefinite"
                calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="52;30;60;40;52"
                keySplines="0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1"/>
@@ -157,7 +161,7 @@
                calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="0.69;0.25;0.85;0.45;0.69"
                keySplines="0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1"/>
     </rect>
-    <rect class="dot" x="1018" y="114" width="12" height="64" rx="2" fill="currentColor">
+    <rect class="bar" x="1018" y="114" width="12" height="64" rx="2" fill="currentColor">
       <animate attributeName="height" dur="9.1s" begin="3.4s" repeatCount="indefinite"
                calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="64;42;56;36;64"
                keySplines="0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1"/>
@@ -168,7 +172,7 @@
                calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="0.85;0.38;0.68;0.25;0.85"
                keySplines="0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1"/>
     </rect>
-    <rect class="dot" x="1042" y="132" width="12" height="46" rx="2" fill="currentColor">
+    <rect class="bar" x="1042" y="132" width="12" height="46" rx="2" fill="currentColor">
       <animate attributeName="height" dur="8.0s" begin="3.8s" repeatCount="indefinite"
                calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="46;62;34;58;46"
                keySplines="0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1"/>
@@ -179,7 +183,7 @@
                calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="0.51;0.85;0.25;0.76;0.51"
                keySplines="0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1"/>
     </rect>
-    <rect class="dot" x="1066" y="120" width="12" height="58" rx="2" fill="currentColor">
+    <rect class="bar" x="1066" y="120" width="12" height="58" rx="2" fill="currentColor">
       <animate attributeName="height" dur="10.5s" begin="4.2s" repeatCount="indefinite"
                calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="58;38;66;44;58"
                keySplines="0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1"/>
@@ -193,7 +197,7 @@
   </g>
 
   <!-- wave, flipped upside down, hanging from the top, flowing left to right -->
-  <g class="ink">
+  <g class="wave">
     <g>
       <animateTransform attributeName="transform" attributeType="XML" type="translate" from="0 0" to="-1200 0" dur="11s" repeatCount="indefinite"/>
       <path d="M0,70 C200,110 350,30 600,70 C850,110 1000,30 1200,70 L1200,0 L0,0 Z" fill="currentColor"/>
