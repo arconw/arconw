@@ -1,0 +1,33 @@
+<svg width="1200" height="110" viewBox="0 0 1200 110" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .wave { color: rgba(139,92,246,0.45); }
+    @media (prefers-color-scheme: dark) {
+      .wave { color: rgba(167,139,250,0.5); }
+    }
+  </style>
+
+  <!-- wave, right-side up, sitting at the bottom, flowing left to right -->
+  <g class="wave">
+    <g>
+      <animateTransform attributeName="transform" attributeType="XML" type="translate" from="0 0" to="-1200 0" dur="11s" repeatCount="indefinite"/>
+      <path d="M0,40 C200,0 350,80 600,40 C850,0 1000,80 1200,40 L1200,110 L0,110 Z" fill="currentColor"/>
+      <path d="M0,40 C200,0 350,80 600,40 C850,0 1000,80 1200,40 L1200,110 L0,110 Z" fill="currentColor" transform="translate(1200,0)"/>
+    </g>
+    <g>
+      <animateTransform attributeName="transform" attributeType="XML" type="translate" from="0 0" to="-1200 0" dur="8s" repeatCount="indefinite"/>
+      <path d="M0,60 C220,25 380,95 600,60 C820,25 980,95 1200,60 L1200,110 L0,110 Z" fill="currentColor"/>
+      <path d="M0,60 C220,25 380,95 600,60 C820,25 980,95 1200,60 L1200,110 L0,110 Z" fill="currentColor" transform="translate(1200,0)"/>
+    </g>
+    <g>
+      <animateTransform attributeName="transform" attributeType="XML" type="translate" from="0 0" to="-1200 0" dur="6s" repeatCount="indefinite"/>
+      <path d="M0,80 C240,55 400,105 600,80 C800,55 960,105 1200,80 L1200,110 L0,110 Z" fill="currentColor"/>
+      <path d="M0,80 C240,55 400,105 600,80 C800,55 960,105 1200,80 L1200,110 L0,110 Z" fill="currentColor" transform="translate(1200,0)"/>
+    </g>
+  </g>
+
+  <!-- watermark -->
+  <text x="20" y="95" text-anchor="start"
+        font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="15" font-weight="600" letter-spacing="1"
+        fill="#FFFFFF" opacity="0.4">Arconw</text>
+</svg>
